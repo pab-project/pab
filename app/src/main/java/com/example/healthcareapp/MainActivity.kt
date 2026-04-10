@@ -11,29 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    // Data mahasiswa
-    private val nim = "L0124045"
-    private val namaLengkap = "Berly Marcellino Suprapto"
-    private val jurusan = "Informatika"
-    private val angkatan = "2024"
-    private val deskripsi = "Mahasiswa aktif jurusan Teknik Informatika yang tertarik pada pengembangan aplikasi mobile, khususnya Android. Saat ini sedang mempelajari Kotlin dan pengembangan aplikasi kesehatan digital."
-    private val githubUrl = "https://github.com/IMars-kun"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        setupUI()
         setupButtons()
     }
-
-//    private fun setupUI() {
-//        // Set data mahasiswa ke TextView
-//        findViewById<TextView>(R.id.tvNim).text = nim
-//        findViewById<TextView>(R.id.tvNama).text = namaLengkap
-//        findViewById<TextView>(R.id.tvJurusan).text = jurusan
-//        findViewById<TextView>(R.id.tvAngkatan).text = angkatan
-//    }
 
     private fun setupButtons() {
         // =============================================
@@ -48,8 +31,8 @@ class MainActivity : AppCompatActivity() {
                 "Berly Marcellino Suprapto",
                 "Informatika",
                 "2024",
-                "Tertarik mobile development dan Android.",
-                        "https://github.com/IMars-kun"
+                "Pangeran Mars yang jatuh ke bumi lalu memulai perjalanannya sebagai Raja Iblis",
+                "https://github.com/IMars-kun"
             )
         }
 
@@ -100,12 +83,12 @@ class MainActivity : AppCompatActivity() {
         // =========================
         findViewById<Button>(R.id.btnMember5).setOnClickListener {
             openProfile(
-                "L0124004",
-                "Member Lima",
+                "L0124054",
+                "Farrel Azhar Vahrezi",
                 "Informatika",
                 "2024",
                 "Fokus ke cybersecurity.",
-                "https://github.com/"
+                "https://github.com/faleryn"
             )
         }
 
