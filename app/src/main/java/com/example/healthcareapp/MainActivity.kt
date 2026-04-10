@@ -41,12 +41,12 @@ class MainActivity : AppCompatActivity() {
         // =========================
         findViewById<Button>(R.id.btnMember2).setOnClickListener {
             openProfile(
-                "L0124001",
-                "Member Dua",
+                "L0124041",
+                "Ardina Vidya S",
                 "Informatika",
                 "2024",
                 "Fokus di backend dan database.",
-                "https://github.com/"
+                "https://github.com/ardinavidya"
             )
         }
 
@@ -55,12 +55,12 @@ class MainActivity : AppCompatActivity() {
         // =========================
         findViewById<Button>(R.id.btnMember3).setOnClickListener {
             openProfile(
-                "L0124002",
-                "Member Tiga",
+                "L0124085",
+                "Aisyah Nurul S",
                 "Informatika",
                 "2024",
                 "Suka UI/UX design.",
-                "https://github.com/"
+                "https://github.com/ArulxSho"
             )
         }
 
@@ -69,12 +69,12 @@ class MainActivity : AppCompatActivity() {
         // =========================
         findViewById<Button>(R.id.btnMember4).setOnClickListener {
             openProfile(
-                "L0124003",
-                "Member Empat",
+                "L0124092",
+                "Calista Salsabila",
                 "Informatika",
                 "2024",
                 "Tertarik AI dan machine learning.",
-                "https://github.com/"
+                "https://github.com/calistasalsabila"
             )
         }
 
