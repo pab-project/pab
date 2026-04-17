@@ -44,6 +44,9 @@
             android:name="com.example.healthcareapp.ProfileActivity"
             android:exported="false"
             android:parentActivityName="com.example.healthcareapp.MainActivity" />
+        <activity
+            android:name="androidx.compose.ui.tooling.PreviewActivity"
+            android:exported="true" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

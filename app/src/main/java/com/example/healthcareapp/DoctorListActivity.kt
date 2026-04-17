@@ -2,64 +2,80 @@ package com.example.healthcareapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
-class DoctorListActivity : AppCompatActivity() {
+class DoctorListActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_doctor_list)
 
-        val listView = findViewById<ListView>(R.id.listDoctor)
+        setContent {
+            DoctorListScreen(
+                doctors = DoctorDummy.doctors,
+                onClick = { doctor ->
+                    val intent = Intent(this, DoctorDetailActivity::class.java)
+                    intent.putExtra("NAME", doctor.name)
+                    intent.putExtra("SPECIALIZATION", doctor.specialization)
+                    intent.putExtra("DESCRIPTION", doctor.description)
+                    intent.putStringArrayListExtra("SCHEDULE", ArrayList(doctor.schedule))
 
-        val adapter = DoctorAdapter(DoctorDummy.doctors)
-        listView.adapter = adapter
-
-        listView.setOnItemClickListener { _, _, position, _ ->
-
-            android.widget.Toast.makeText(this, "CLICK WORKS", android.widget.Toast.LENGTH_SHORT).show()
-
-            val doctor = DoctorDummy.doctors[position]
-
-            val intent = Intent(this, DoctorDetailActivity::class.java)
-            intent.putExtra("NAME", doctor.name)
-            intent.putExtra("SPECIALIZATION", doctor.specialization)
-            intent.putExtra("DESCRIPTION", doctor.description)
-            intent.putStringArrayListExtra("SCHEDULE", ArrayList(doctor.schedule))
-
-            startActivity(intent)
+                    startActivity(intent)
+                }
+            )
         }
     }
+}
 
-    // 🔥 Adapter di dalam activity
-    inner class DoctorAdapter(private val doctorList: List<Doctor>) : BaseAdapter() {
+@Composable
+fun DoctorListScreen(
+    doctors: List<Doctor>,
+    onClick: (Doctor) -> Unit
+) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        items(doctors) { doctor ->
+            DoctorItem(doctor, onClick)
+            Spacer(modifier = Modifier.height(12.dp))
+        }
+    }
+}
 
-        override fun getCount(): Int = doctorList.size
+@Composable
+fun DoctorItem(
+    doctor: Doctor,
+    onClick: (Doctor) -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick(doctor) },
+        elevation = CardDefaults.cardElevation(6.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
 
-        override fun getItem(position: Int): Any = doctorList[position]
+            Text(
+                text = "👨‍⚕️ ${doctor.name}",
+                style = MaterialTheme.typography.titleMedium
+            )
 
-        override fun getItemId(position: Int): Long = position.toLong()
+            Spacer(modifier = Modifier.height(4.dp))
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
-            val view = convertView ?: LayoutInflater.from(this@DoctorListActivity)
-                .inflate(R.layout.item_doctor, parent, false)
-
-            val doctor = doctorList[position]
-
-            val name = view.findViewById<TextView>(R.id.tvDoctorName)
-            val spec = view.findViewById<TextView>(R.id.tvDoctorSpec)
-
-            name.text = "👨‍⚕️ ${doctor.name}"
-            spec.text = doctor.specialization
-
-            return view
+            Text(
+                text = doctor.specialization,
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }
