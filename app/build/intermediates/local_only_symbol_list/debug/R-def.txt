@@ -21,6 +21,7 @@ id btnBack
 id btnEmergency
 id btnFindHospital
 id btnGithub
+id btnMakeAppointment
 id btnMember1
 id btnMember2
 id btnMember3
